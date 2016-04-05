@@ -3,7 +3,7 @@ $('#myButt').on('click', function() {
     picslist.empty();
     var query = $('#mySearch').val();
 
-    if (query == '') alert('please select an artist');
+    if (query == '') alert('please fuck off');
 
     console.log(query);
 
