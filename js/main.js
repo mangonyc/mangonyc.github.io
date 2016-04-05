@@ -3,7 +3,7 @@ $('#myButt').on('click', function() {
     picslist.empty();
     var query = $('#mySearch').val();
 
-    if (query == '') alert('please select an artist');
+    if (query == '') alert('please fuck off');
 
     console.log(query);
 
@@ -50,19 +50,18 @@ $('#myButt').on('click', function() {
                             transformPerspective: 1800,
                             ease: Power3.easeIn
                         }, .16);
-                    })
+					    theCover.on('click', function(e) {
+					    	console.log('did it click');
+					        var $album = $(this);
+					        // closeAllAlbums()
+					        turnAlbum($album);
+					    })
+                    });
+                    
                 } //end success from main json
         }) //end ajax command
 
-    $('body').on('click', '.g-flip', function(e) {
-        var $album = $(this);
-        // closeAllAlbums()
-        turnAlbum($album);
-    })
-
-
-
-
+ 
     // get tracklist
     function getTracklist($album) {
         console.log('get tracklist');
@@ -90,7 +89,7 @@ $('#myButt').on('click', function() {
                 traxNames.forEach(function(track) {
                     var trackname = track.name;
                     var listenUrl = track.preview_url;
-                    console.log(listenUrl);
+                    // console.log(listenUrl);
                     var $newLi = $('<li class="track-name">');
                     $newLi.html(trackname);
                     // $newLi.html('<a href="' + listenUrl + '">' + trackname + '</a>');
@@ -145,44 +144,25 @@ $('#myButt').on('click', function() {
             // console.log('track list ran');
     } //end of getTracklist
 
-    // turn the album cover over - check to see if it has been already turned over
-    function closeAllAlbums() {
-        var allAlbums = $('.indiv-album')
-        console.log('close all albums');
-        TweenMax.to(allAlbums, 2, {
-                rotationY: 20,
-                transformPerspective: 1800,
-                ease: Power3.easeOut
-            })
-            // body...
-    }
-
     function turnAlbum($album) {
         console.log("turn album");
-        console.log($album.parent().parent());
+        // console.log($album.parent().parent());
         var topAlbum = $album.parent().parent()
-            // var myAlbum = $('.indiv-album')
-            // var $albumImg = $album.find('.g-flip');
-            // var nx = myAlbum.children();
         var stuff = $('.mytracks , .flippy');
-        // var btn = $('.flippy')
         stuff.remove();
-        // lists.fadeOut(200);
-        // console.log(containr);
         var nx = topAlbum.siblings().find('.g-flip');
-        console.log(nx);
+        // console.log(nx);
         TweenMax.to(nx, 1, {
                 rotationY: 0,
                 ease: Power3.ease0ut
-            })
+            });
             // console.log($albumImg);
             // var tl = new TimelineMax()
         var tl = new TimelineMax({
                 onComplete: function() {
                     getTracklist($album)
                 }
-            })
-            // tl.set(nx , {rotationY:0})
+            });
         tl.to($album, 1.5, {
             opacity: 1,
             scale: 1,
