@@ -108,20 +108,42 @@ html {
     max-width: 1200px;
     margin: 0 auto;
     /*padding: 24px;*/
-    background-color: #efefef;
-    background-color: rgba(214, 239, 229, .75);
+    background-color: #eeded4;
+    background-color: rgba(238, 222, 212, .75);
     overflow: hidden;
     font-family: 'Titillium Web',sans-serif;
 }
 header {
     text-align: center;
     background-color: #545454;
+    background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #171717),
+    color-stop(0.51, #8F4D8F),
+    color-stop(1, #2B132B)
+    );
+    background-image: -o-linear-gradient(bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
+    background-image: -moz-linear-gradient(bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
+    background-image: -webkit-linear-gradient(bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
+    background-image: -ms-linear-gradient(bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
+    background-image: linear-gradient(to bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
     color: #fc0;
     padding: 24px 0;
 }
 h1 {
     font-size: 4.5em;
     margin: 0;
+}
+
+.msg {
+    padding: 6px;
+    color: #c00;
+    font-size: 1.0em;
+    text-align: center;
+    margin: 12px auto;
+    width: 30%;
 }
 
 #search {
@@ -143,13 +165,19 @@ h1 {
     color: #fff;
     font-size: 1.24em;
     border: 1px solid #666;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3019+0,cf0404+100;Red+3D */
-    background: #ff3019; /* Old browsers */
-    background: -moz-linear-gradient(top,  #ff3019 0%, #cf0404 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  #ff3019 0%,#cf0404 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  #ff3019 0%,#cf0404 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
-
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #3EB554),
+        color-stop(0.51, #25CF47),
+        color-stop(1, #5A9E65)
+    );
+    background-image: -o-linear-gradient(bottom, #3EB554 0%, #25CF47 51%, #5A9E65 100%);
+    background-image: -moz-linear-gradient(bottom, #3EB554 0%, #25CF47 51%, #5A9E65 100%);
+    background-image: -webkit-linear-gradient(bottom, #3EB554 0%, #25CF47 51%, #5A9E65 100%);
+    background-image: -ms-linear-gradient(bottom, #3EB554 0%, #25CF47 51%, #5A9E65 100%);
+    background-image: linear-gradient(to bottom, #3EB554 0%, #25CF47 51%, #5A9E65 100%);
 }
 #search button:hover {
     color: #333;
@@ -160,6 +188,9 @@ h1 {
     background: linear-gradient(to bottom,  #fefcea 0%,#f1da36 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=0 ); /* IE6-9 */
 
+}
+#search p {
+    margin: 4px 0;
 }
 
 #the-pics {
@@ -217,6 +248,12 @@ li:before {
 li:hover {
     color: #c00;
 }
+.playing {
+    color: #00b115;
+}
+.playing:before {
+    content: url(../img/pause-icon.png);
+}
 
 .testly {
     position: relative;
@@ -266,6 +303,11 @@ li:hover {
 .flippy:hover {
     background-color: #efefef;
     color: #616161;
+}
+
+footer {
+    text-align: center;
+    padding: 12px 0;
 }
 
 
