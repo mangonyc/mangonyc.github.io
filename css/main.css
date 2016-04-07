@@ -117,33 +117,35 @@ header {
     text-align: center;
     background-color: #545454;
     background-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    color-stop(0, #171717),
-    color-stop(0.51, #8F4D8F),
-    color-stop(1, #2B132B)
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #E8CC15),
+        color-stop(0.48, #EBE4BF),
+        color-stop(1, #E3CB54)
     );
-    background-image: -o-linear-gradient(bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
-    background-image: -moz-linear-gradient(bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
-    background-image: -webkit-linear-gradient(bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
-    background-image: -ms-linear-gradient(bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
-    background-image: linear-gradient(to bottom, #171717 0%, #8F4D8F 51%, #2B132B 100%);
-    color: #fc0;
-    padding: 24px 0;
+    background-image: -o-linear-gradient(bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
+    background-image: -moz-linear-gradient(bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
+    background-image: -webkit-linear-gradient(bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
+    background-image: -ms-linear-gradient(bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
+    background-image: linear-gradient(to bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
+    color: #333;
+    padding: 8px 0;
 }
 h1 {
-    font-size: 4.5em;
+    font-size: 4.1em;
     margin: 0;
+    font-weight: 400;
+    font-family: 'Sonsie One', sans-serif;
 }
 
 .msg {
-    padding: 6px;
+    padding: 12px;
     color: #c00;
     font-size: 1.0em;
     text-align: center;
     margin: 12px auto;
-    width: 30%;
+    width: 300px;
 }
 
 #search {
@@ -158,6 +160,12 @@ h1 {
     border: 1px solid #ccc;
     margin: 0 24px 0 0;
 }
+
+#search p {
+    margin: 0;
+}
+
+
 #search button {
     padding: 12px 8px;
     border-radius: 4px;
@@ -303,6 +311,24 @@ li:hover {
 .flippy:hover {
     background-color: #efefef;
     color: #616161;
+}
+
+.nowplay {
+    background-color: #666;
+    padding: 8px 0;
+    font-size: 1em;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    min-height: 24px;
+    position: relative;
+
+}
+.nptext {
+    color: #fc0;
+    font-weight: 700;
+    position: absolute;
+    left: 40px;
 }
 
 footer {

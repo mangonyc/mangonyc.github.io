@@ -1,5 +1,6 @@
 // Everything happens in one main function, that function is instantiated upon the button click
-$('#myButt').on('click', function() {
+function getMusic() {
+    $('.nowplay').html('');
     var picslist = $('#the-pics')
     var msg = $('.msg')
     picslist.empty();
@@ -68,6 +69,11 @@ $('#myButt').on('click', function() {
     // This function takes the album which as this point is being passed as the img of the album cover- the tracklist data resides two levels in the div outside the img, so we need to set it to the outer div by using parent().parent(). Now we can access the tracklist.
     function turnAlbum($album) {
         console.log("turn album");
+        if (myAudio) {
+            $('.nowplay').html('');
+            myAudio.pause();
+            console.log('my second pause');
+        }
         var topAlbum = $album.parent().parent()
         var trackItems = $('.mytracks , .flippy');
         trackItems.remove();
@@ -134,10 +140,13 @@ $('#myButt').on('click', function() {
                         // create a class to add to atrack when played to identify it later to be turned off.
                         var playingTrack = 'playing'
                         var target = e.target;
+                        var trackPlaying = $('.nowplay')
+                        trackPlaying.html('<span class="nptext">NOW PLAYING: </span>' + trackname);
                         if (target !== null) {
                             // Check to see if the track is playing already by class name, if it is, pause it becuase you are playing a new track.
                             if ($(this).hasClass('playing')) {
                                 console.log('just pause it');
+                                trackPlaying.html('');
                                 myAudio.pause();
                             } else {
                                 // otherise the track exists already- we should pause that too, most likely clicking on the same track to pause it.
@@ -165,8 +174,13 @@ $('#myButt').on('click', function() {
                 flipBtn.on('click', flipButton);
 
                 function flipButton() {
+                    if (myAudio) {
+                        myAudio.pause();
+                        $('.nowplay').html('');
+                    }
                     var $albumImg = $album.find('.g-flip');
                     console.log('flip button function clicked');
+                    $('.nowplay').html('');
                     flipBtn.remove();
                     $album.removeClass('tracksOpen');
                     tracklist.fadeOut(200, function() {
@@ -182,4 +196,14 @@ $('#myButt').on('click', function() {
             // console.log('track list ran');
     } //end of getTracklist
     
-});
+};// end getMusic function
+
+$('#myButt').on('click', getMusic);
+
+$('#mySearch').keypress(function(event){
+    if(event.keyCode == 13){
+        console.log('enter key pressed');
+        getMusic();
+        }
+
+    })
