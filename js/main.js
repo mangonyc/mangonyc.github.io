@@ -139,7 +139,7 @@ function getMusic() {
                         // create a class to add to atrack when played to identify it later to be turned off.
                         var playingTrack = 'playing'
                         var target = e.target;
-                        trackPlaying.html('<span class="nptext">NOW PLAYING: </span>' + trackname);
+                        trackPlaying.html('<marquee behavior="scroll" scrolldelay="60" width="100%" direction="left"><span class="nptext">NOW PLAYING: </span>' + trackname + '</marquee>');
                         if (target !== null) {
                             // Check to see if the track is playing already by class name, if it is, pause it becuase you are playing a new track.
                             if ($(this).hasClass('playing')) {
@@ -172,15 +172,9 @@ function getMusic() {
                 flipBtn.on('click', flipButton);
 
                 function flipButton() {
-                    if (myAudio) {
-                        myAudio.pause();
-                        $('.nowplay').html('');
-                    }
                     var $albumImg = $album.find('.g-flip');
                     console.log('flip button function clicked');
-                    $('.nowplay').html('');
                     flipBtn.remove();
-                    $album.removeClass('tracksOpen');
                     tracklist.fadeOut(200, function() {
                         console.log('tracklist removed');
                         TweenMax.to($albumImg, 2, {
@@ -200,7 +194,6 @@ $('#myButt').on('click', function () {
     if (myAudio) {
         $('.nowplay').html('');
         myAudio.pause();
-        console.log('zizzleshit-wombat');
     }
     getMusic();
 });
@@ -210,9 +203,14 @@ $('#mySearch').keypress(function(event){
         if (myAudio) {
             $('.nowplay').html('');
             myAudio.pause();
-            console.log('zizzleshit-wombat');
         }
         getMusic();
         }
 
     })
+$('#mute').on('click', function () {
+    if (myAudio) {
+        $('.nowplay').html('');
+        myAudio.pause();
+    }
+});

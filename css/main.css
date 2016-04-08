@@ -112,6 +112,7 @@ html {
     background-color: rgba(238, 222, 212, .75);
     overflow: hidden;
     font-family: 'Titillium Web',sans-serif;
+    position: relative;
 }
 header {
     text-align: center;
@@ -262,7 +263,19 @@ li:hover {
 .playing:before {
     content: url(../img/pause-icon.png);
 }
-
+#mute {
+    background-color: #c00;
+    border: 0px solid #666d6e;
+    border-radius: 4px;
+    color: #efefef;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: .71em;
+}
+#mute:hover{
+    background-color: #555;
+}
 .testly {
     position: relative;
     background-color: #c00;
@@ -316,11 +329,11 @@ li:hover {
 .nowplay {
     background-color: #666;
     padding: 8px 0;
-    font-size: 1em;
+    font-size: 1.1em;
     width: 100%;
     color: #fff;
-    text-align: center;
-    min-height: 24px;
+    text-align: left;
+    min-height: 28px;
     position: relative;
     background-image: -webkit-gradient(
         linear,
