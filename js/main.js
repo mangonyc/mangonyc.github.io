@@ -1,18 +1,22 @@
+// declare the audio variable here so you can stop the music from anywhere
+var myAudio;
 // Everything happens in one main function, that function is instantiated upon the button click
 function getMusic() {
-    $('.nowplay').html('');
+    var trackPlaying = $('.nowplay')
+    trackPlaying.html('');
     var picslist = $('#the-pics')
     var msg = $('.msg')
-    picslist.empty();
+    
     msg.empty().css('border', 'none');
 
     var query = $('#mySearch').val();
     var url = 'https://api.spotify.com/v1/search';
-    var myAudio;
 
     if (query == '') {
         msg.css('border', '1px solid #c00')
         msg.html('C’mon, you can think of something')
+    } else {
+        picslist.empty();
     }
 // This is the main API call, utilizing the value of the search input field as its query
     $.ajax({
@@ -69,11 +73,6 @@ function getMusic() {
     // This function takes the album which as this point is being passed as the img of the album cover- the tracklist data resides two levels in the div outside the img, so we need to set it to the outer div by using parent().parent(). Now we can access the tracklist.
     function turnAlbum($album) {
         console.log("turn album");
-        if (myAudio) {
-            $('.nowplay').html('');
-            myAudio.pause();
-            console.log('my second pause');
-        }
         var topAlbum = $album.parent().parent()
         var trackItems = $('.mytracks , .flippy');
         trackItems.remove();
@@ -140,7 +139,6 @@ function getMusic() {
                         // create a class to add to atrack when played to identify it later to be turned off.
                         var playingTrack = 'playing'
                         var target = e.target;
-                        var trackPlaying = $('.nowplay')
                         trackPlaying.html('<span class="nptext">NOW PLAYING: </span>' + trackname);
                         if (target !== null) {
                             // Check to see if the track is playing already by class name, if it is, pause it becuase you are playing a new track.
@@ -198,11 +196,22 @@ function getMusic() {
     
 };// end getMusic function
 
-$('#myButt').on('click', getMusic);
+$('#myButt').on('click', function () {
+    if (myAudio) {
+        $('.nowplay').html('');
+        myAudio.pause();
+        console.log('zizzleshit-wombat');
+    }
+    getMusic();
+});
 
 $('#mySearch').keypress(function(event){
     if(event.keyCode == 13){
-        console.log('enter key pressed');
+        if (myAudio) {
+            $('.nowplay').html('');
+            myAudio.pause();
+            console.log('zizzleshit-wombat');
+        }
         getMusic();
         }
 

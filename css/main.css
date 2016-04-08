@@ -322,13 +322,23 @@ li:hover {
     text-align: center;
     min-height: 24px;
     position: relative;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #0B1014),
+        color-stop(1, #646A6E)
+    );
+    background-image: -o-linear-gradient(bottom, #0B1014 0%, #646A6E 100%);
+    background-image: -moz-linear-gradient(bottom, #0B1014 0%, #646A6E 100%);
+    background-image: -webkit-linear-gradient(bottom, #0B1014 0%, #646A6E 100%);
+    background-image: -ms-linear-gradient(bottom, #0B1014 0%, #646A6E 100%);
+    background-image: linear-gradient(to bottom, #0B1014 0%, #646A6E 100%);
 
 }
 .nptext {
     color: #fc0;
     font-weight: 700;
-    position: absolute;
-    left: 40px;
 }
 
 footer {
