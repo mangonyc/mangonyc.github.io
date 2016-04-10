@@ -1,31 +1,26 @@
 // declare the audio variable here so you can stop the music from anywhere
 var myAudio;
+var msgBox = $('<div class="msg">');
 // Everything happens in one main function, that function is instantiated upon the button click
 function getMusic() {
     var trackPlaying = $('.nowplay')
-    trackPlaying.html('');
     var picslist = $('#the-pics')
-    var msg = $('.msg')
-    
-    msg.empty().css('border', 'none');
-
     var query = $('#mySearch').val();
     var url = 'https://api.spotify.com/v1/search';
-
     if (query == '') {
-        msg.css('border', '1px solid #c00')
-        msg.html('C’mon, you can think of something')
+        msgBox.html('C’mon, you can think of something');
+        $('#search').append(msgBox);
     } else {
         picslist.empty();
     }
-// This is the main API call, utilizing the value of the search input field as its query
+    // This is the main API call, utilizing the value of the search input field as its query
     $.ajax({
             url: url,
             data: {
                 q: query,
                 type: 'album'
             },
-            // for each artist we are going to dig down to extract the albums, their titles, their cover images-using [1] which is the middle picture available at 300px wide. We create DOM elements for each and append them to a div on the page
+            // for each artist we are going to dig down to extract the albums, titles, tracklist  and the cover images-using [1] which is the middle picture available at 300px wide. We create DOM elements for each and append them to a div on the page
             success: function(artist) {
                     var albums = artist.albums.items;
                     albums.forEach(function(album) {
@@ -38,7 +33,6 @@ function getMusic() {
                         var $newTitle = $('<h3>');
                         picslist.append($newDiv);
                         $newDiv.data('albumlink', album.href);
-
                         $newDiv.append(itemContainer);
                         // This GSAP code sets the album divs to an opacity of 0, and a scale of 2x, so they come in from larger and fade in.
                         TweenMax.set($newDiv, {
@@ -49,6 +43,7 @@ function getMusic() {
                         itemContainer.append(theCover);
                         itemContainer.data('albumlink', album.href);
                         $newDiv.append($newTitle)
+                        $newTitle.data('albumtitle', album.name);
                         // This GSAP code takes the divs with album covers and titles in them, and rotates the divs into the page.
                         TweenMax.staggerTo($('.indiv-album'), 1, {
                             opacity: 1,
@@ -75,7 +70,7 @@ function getMusic() {
         console.log("turn album");
         var topAlbum = $album.parent().parent()
         var trackItems = $('.mytracks , .flippy');
-        trackItems.remove();
+        trackItems.fadeOut(0);
         //  find all the albums except the one you flipped
         var restOfAlbums = topAlbum.siblings().find('.g-flip');
         // set all the rest of the albums to 0° before turning so that only one album is turned at a time
@@ -104,6 +99,7 @@ function getMusic() {
         $album = $album.parent().parent();
         $album.addClass('tracksOpen');
         var tracklistUrl = $album.data('albumlink');
+        var albumTitle = $album.find('h3');
         var $itemContainer = $album.find('.containr')
         var tracklist = $('<ul class="mytracks">')
 
@@ -119,7 +115,9 @@ function getMusic() {
                     var trackname = track.name;
                     var listenUrl = track.preview_url;
                     var $newLi = $('<li class="track-name">');
+                    $newLi.data('nextlink', track.preview_url)
                     $newLi.html(trackname);
+                    var $nextLi = $newLi.next();
                     // set the track names opacity to 0, so they can fade in.
                     TweenMax.set($newLi, {
                         opacity: 0
@@ -128,18 +126,25 @@ function getMusic() {
                     tracklist.append($newLi);
                     $itemContainer.append(tracklist);
                     // This GSAP fades in the tracknames right after one another.
-                    TweenMax.staggerTo($('.track-name'), .5, {
+                    TweenMax.staggerTo($('.track-name'), .15, {
                         opacity: 1,
                         scale: 1,
                         ease: Power3.easeIn
                     }, .076);
                     $itemContainer.data('tracklink', listenUrl);
+
+
                     //  Create a click event for each track name to play/pause it.
                     $newLi.on('click', function(e) {
                         // create a class to add to atrack when played to identify it later to be turned off.
-                        var playingTrack = 'playing'
+                        var playingTrack = 'playing';
+                        var nextTrack = $(this).next();
+                        var lastTrack = $(this).last();
+                        var $newTitle = albumTitle.data('albumtitle')
+                        console.log('spitzo', $newTitle);
                         var target = e.target;
-                        trackPlaying.html('<marquee behavior="scroll" scrolldelay="60" width="100%" direction="left"><span class="nptext">NOW PLAYING: </span>' + trackname + '</marquee>');
+                        var nextUrl = $newLi.next().data('nextlink');
+                        trackPlaying.html('<marquee behavior="scroll" scrolldelay="60" width="100%" direction="left"><span class="nptext">NOW PLAYING: </span>' + '<span class="titletext">' + $newTitle + ': ' + '</span>' + trackname + '</marquee>');
                         if (target !== null) {
                             // Check to see if the track is playing already by class name, if it is, pause it becuase you are playing a new track.
                             if ($(this).hasClass('playing')) {
@@ -150,18 +155,25 @@ function getMusic() {
                                 // otherise the track exists already- we should pause that too, most likely clicking on the same track to pause it.
                                 if (myAudio) {
                                     myAudio.pause();
-                                    console.log('my second pause');
+                                    console.log('my same song pause');
                                 }
-                                console.log('play it');
                                 // Create a new audio object now, and assign it the preview url and play it, add the "playing" class
                                 myAudio = new Audio(listenUrl)
                                 myAudio.play();
                                 target.classList.add(playingTrack);
+
                                 myAudio.addEventListener('ended', function() {
                                     target.classList.remove(playingTrack);
+                                    if (nextTrack) {
+                                        nextTrack.trigger('click');
+                                    } else {
+                                        console.log('that was the last track');
+                                    };
                                 });
+
                                 myAudio.addEventListener('pause', function() {
                                     target.classList.remove(playingTrack);
+                                    trackPlaying.html('');
                                 });
                             }
                         }
@@ -173,10 +185,8 @@ function getMusic() {
 
                 function flipButton() {
                     var $albumImg = $album.find('.g-flip');
-                    console.log('flip button function clicked');
                     flipBtn.remove();
                     tracklist.fadeOut(200, function() {
-                        console.log('tracklist removed');
                         TweenMax.to($albumImg, 2, {
                             rotationY: 0,
                             transformPerspective: 1800,
@@ -187,28 +197,22 @@ function getMusic() {
             }) // end of $.get trax
             // console.log('track list ran');
     } //end of getTracklist
-    
-};// end getMusic function
 
-$('#myButt').on('click', function () {
-    if (myAudio) {
-        $('.nowplay').html('');
-        myAudio.pause();
-    }
+}; // end getMusic function
+
+$('#myButt').on('click', function() {
+    msgBox.remove();
     getMusic();
 });
 
-$('#mySearch').keypress(function(event){
-    if(event.keyCode == 13){
-        if (myAudio) {
-            $('.nowplay').html('');
-            myAudio.pause();
-        }
+$('#mySearch').keypress(function(event) {
+    if (event.keyCode == 13) {
+        msgBox.remove();
         getMusic();
-        }
+    }
+});
 
-    })
-$('#mute').on('click', function () {
+$('#mute').on('click', function() {
     if (myAudio) {
         $('.nowplay').html('');
         myAudio.pause();

@@ -121,23 +121,24 @@ header {
         linear,
         left top,
         left bottom,
-        color-stop(0, #E8CC15),
-        color-stop(0.48, #EBE4BF),
-        color-stop(1, #E3CB54)
+        color-stop(0, #9DC2E3),
+        color-stop(1, #DFEEF0)
     );
-    background-image: -o-linear-gradient(bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
-    background-image: -moz-linear-gradient(bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
-    background-image: -webkit-linear-gradient(bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
-    background-image: -ms-linear-gradient(bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
-    background-image: linear-gradient(to bottom, #E8CC15 0%, #EBE4BF 48%, #E3CB54 100%);
+    background-image: -o-linear-gradient(bottom, #9DC2E3 0%, #DFEEF0 100%);
+    background-image: -moz-linear-gradient(bottom, #9DC2E3 0%, #DFEEF0 100%);
+    background-image: -webkit-linear-gradient(bottom, #9DC2E3 0%, #DFEEF0 100%);
+    background-image: -ms-linear-gradient(bottom, #9DC2E3 0%, #DFEEF0 100%);
+    background-image: linear-gradient(to bottom, #9DC2E3 0%, #DFEEF0 100%);
     color: #333;
-    padding: 8px 0;
+    padding: 16px 0;
 }
 h1 {
-    font-size: 4.1em;
+    font-size: 2.4em;
     margin: 0;
     font-weight: 400;
     font-family: 'Sonsie One', sans-serif;
+    color: #cb0c4f;
+    text-shadow: 0 0 6px #fc0;
 }
 
 .msg {
@@ -147,6 +148,7 @@ h1 {
     text-align: center;
     margin: 12px auto;
     width: 300px;
+    border: 1px solid #c00;
 }
 
 #search {
@@ -163,7 +165,7 @@ h1 {
 }
 
 #search p {
-    margin: 0;
+    margin: 24px 0 0 0;
 }
 
 
@@ -197,9 +199,6 @@ h1 {
     background: linear-gradient(to bottom,  #fefcea 0%,#f1da36 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=0 ); /* IE6-9 */
 
-}
-#search p {
-    margin: 4px 0;
 }
 
 #the-pics {
@@ -238,7 +237,7 @@ h1 {
     line-height: 1.1em;
     text-align: center;
     margin: 14px 0 0 0;
-    font-weight: 400;
+    font-weight: 700;
     font-family: 'Titillium Web',sans-serif;
 }
 
@@ -264,7 +263,6 @@ li:hover {
     content: url(../img/pause-icon.png);
 }
 #mute {
-    background-color: #c00;
     border: 0px solid #666d6e;
     border-radius: 4px;
     color: #efefef;
@@ -273,8 +271,21 @@ li:hover {
     right: 4px;
     font-size: .71em;
 }
+#mute {
+    background-image: url(../img/mute-icon.png);
+    background-position: 0 0;
+    border-radius: 4px;
+    color: #efefef;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: .71em;
+}
 #mute:hover{
-    background-color: #555;
+    /*background-color: #555;*/
+    background-position: 35px 0px;
 }
 .testly {
     position: relative;
@@ -316,9 +327,6 @@ li:hover {
     border-bottom-left-radius: 6px;
     font-family: 'Titillium Web',sans-serif;
     cursor: pointer;
-    /*border-bottom-color: #c00;*/
-    /*box-shadow: 0 0 6px #333;*/
-    /*margin: 0 auto;*/
 }
 
 .flippy:hover {
@@ -329,29 +337,34 @@ li:hover {
 .nowplay {
     background-color: #666;
     padding: 8px 0;
-    font-size: 1.1em;
+    font-size: 1.0em;
+    line-height: 1.2em;
     width: 100%;
     color: #fff;
     text-align: left;
-    min-height: 28px;
+    min-height: 24px;
     position: relative;
     background-image: -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0, #0B1014),
-        color-stop(1, #646A6E)
+        color-stop(0, #292929),
+        color-stop(0.47, #3C4347),
+        color-stop(1, #171717)
     );
-    background-image: -o-linear-gradient(bottom, #0B1014 0%, #646A6E 100%);
-    background-image: -moz-linear-gradient(bottom, #0B1014 0%, #646A6E 100%);
-    background-image: -webkit-linear-gradient(bottom, #0B1014 0%, #646A6E 100%);
-    background-image: -ms-linear-gradient(bottom, #0B1014 0%, #646A6E 100%);
-    background-image: linear-gradient(to bottom, #0B1014 0%, #646A6E 100%);
+    background-image: -o-linear-gradient(bottom, #292929 0%, #3C4347 47%, #171717 100%);
+    background-image: -moz-linear-gradient(bottom, #292929 0%, #3C4347 47%, #171717 100%);
+    background-image: -webkit-linear-gradient(bottom, #292929 0%, #3C4347 47%, #171717 100%);
+    background-image: -ms-linear-gradient(bottom, #292929 0%, #3C4347 47%, #171717 100%);
+    background-image: linear-gradient(to bottom, #292929 0%, #3C4347 47%, #171717 100%);
 
 }
 .nptext {
     color: #fc0;
     font-weight: 700;
+}
+.titletext {
+    color: #a1d2e7;
 }
 
 footer {
