@@ -114,6 +114,7 @@ function getMusic() {
                 traxNames.forEach(function(track) {
                     var trackname = track.name;
                     var listenUrl = track.preview_url;
+                    var artistName = track.artists[0].name;
                     var $newLi = $('<li class="track-name">');
                     $newLi.data('nextlink', track.preview_url)
                     $newLi.html(trackname);
@@ -141,21 +142,20 @@ function getMusic() {
                         var nextTrack = $(this).next();
                         var lastTrack = $(this).last();
                         var $newTitle = albumTitle.data('albumtitle')
-                        console.log('spitzo', $newTitle);
                         var target = e.target;
                         var nextUrl = $newLi.next().data('nextlink');
-                        trackPlaying.html('<marquee behavior="scroll" scrolldelay="60" width="100%" direction="left"><span class="nptext">NOW PLAYING: </span>' + '<span class="titletext">' + $newTitle + ': ' + '</span>' + trackname + '</marquee>');
+                        trackPlaying.html('<marquee behavior="scroll" scrolldelay="60" width="100%" direction="left"><span class="nptext">NOW PLAYING</span>' + '<span class="artisttext">' + artistName + '</span>' + '<span class="titletext">' + $newTitle + '</span>' + '<span class="tracktext">' + trackname + '</span>' + '</marquee>');
                         if (target !== null) {
                             // Check to see if the track is playing already by class name, if it is, pause it becuase you are playing a new track.
                             if ($(this).hasClass('playing')) {
-                                console.log('just pause it');
+                                console.log('my same song pause');
                                 trackPlaying.html('');
                                 myAudio.pause();
                             } else {
                                 // otherise the track exists already- we should pause that too, most likely clicking on the same track to pause it.
                                 if (myAudio) {
                                     myAudio.pause();
-                                    console.log('my same song pause');
+                                    console.log('just pause it');
                                 }
                                 // Create a new audio object now, and assign it the preview url and play it, add the "playing" class
                                 myAudio = new Audio(listenUrl)
@@ -173,7 +173,6 @@ function getMusic() {
 
                                 myAudio.addEventListener('pause', function() {
                                     target.classList.remove(playingTrack);
-                                    trackPlaying.html('');
                                 });
                             }
                         }

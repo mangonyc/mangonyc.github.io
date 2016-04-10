@@ -115,6 +115,7 @@ html {
     position: relative;
 }
 header {
+    width: 100%;
     text-align: center;
     background-color: #545454;
     background-image: -webkit-gradient(
@@ -337,8 +338,9 @@ li:hover {
 .nowplay {
     background-color: #666;
     padding: 8px 0;
-    font-size: 1.0em;
-    line-height: 1.2em;
+    vertical-align: middle;
+    font-size: .93em;
+    /*line-height: .5em;*/
     width: 100%;
     color: #fff;
     text-align: left;
@@ -362,9 +364,38 @@ li:hover {
 .nptext {
     color: #fc0;
     font-weight: 700;
+    padding: 0px 6px;
+    background-color: #cb0c4f;
 }
 .titletext {
     color: #a1d2e7;
+}
+.artisttext {
+    color: #a1d2e7;
+}
+.tracktext {
+    color: #a1d2e7;
+}
+.artisttext:before {
+    content: 'ARTIST:';
+    color: #efefef;
+    font-size: .75em;
+    /*line-height: 1.95em;*/
+    padding: 0 6px 0 12px;
+}
+.titletext:before {
+    content: 'ALBUM:';
+    color: #efefef;
+    font-size: .75em;
+    /*line-height: 1.95em;*/
+    padding: 0 6px 0 12px;
+}
+.tracktext:before {
+    content: 'TRACK:';
+    color: #efefef;
+    font-size: .75em;
+    /*line-height: 1.95em;*/
+    padding: 0 6px 0 12px;
 }
 
 footer {
