@@ -368,31 +368,31 @@ li:hover {
     background-color: #cb0c4f;
 }
 .titletext {
-    color: #a1d2e7;
+    color: #efefef;
 }
 .artisttext {
-    color: #a1d2e7;
+    color: #efefef;
 }
 .tracktext {
-    color: #a1d2e7;
+    color: #efefef;
 }
 .artisttext:before {
     content: 'ARTIST:';
-    color: #efefef;
+    color: #a1d2e7;
     font-size: .75em;
     /*line-height: 1.95em;*/
     padding: 0 6px 0 12px;
 }
 .titletext:before {
     content: 'ALBUM:';
-    color: #efefef;
+    color: #a1d2e7;
     font-size: .75em;
     /*line-height: 1.95em;*/
     padding: 0 6px 0 12px;
 }
 .tracktext:before {
     content: 'TRACK:';
-    color: #efefef;
+    color: #a1d2e7;
     font-size: .75em;
     /*line-height: 1.95em;*/
     padding: 0 6px 0 12px;
